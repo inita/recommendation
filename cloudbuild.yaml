@@ -2,3 +2,7 @@ steps:
   - name: gcr.io/cloud-builders/mvn
     id: build
     args: ['clean', 'install']
+  - name: gcr.io/cloud-builders/docker
+    args: ['build', '-t', 'recommendation:latest']
+  - name: gcr.io/cloud-builders/docker
+    args: ['push', 'recommendation:latest']
