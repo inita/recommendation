@@ -3,6 +3,6 @@ steps:
     id: build
     args: ['clean', 'install']
   - name: gcr.io/cloud-builders/docker
-    args: ['build', '-t', 'recommendation:latest']
+    args: ['build -t recommendation:latest']
   - name: gcr.io/cloud-builders/docker
     args: ['push', 'recommendation:latest']
