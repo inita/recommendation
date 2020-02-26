@@ -3,7 +3,6 @@ steps:
   - name: 'gcr.io/cloud-builders/mvn'
     id: Install
     args: ['clean','install']
-  ​
   # This step builds the container image.
   - name: 'gcr.io/cloud-builders/docker'
     id: Build
