@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: recommendation2
+  name: recommendation
   labels:
-    app: recommendation2
+    app: recommendation
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: recommendation2
+      app: recommendation
   template:
     metadata:
       labels:
-        app: recommendation2
+        app: recommendation
     spec:
       containers:
-        - name: preference
-          image: gcr.io/cirrus-initial-project/recommendation2:latest
+        - name: recommendation
+          image: gcr.io/cirrus-initial-project/recommendation:latest
           ports:
             - containerPort: 8080
-          imagePullPolicy: Always
+          imagePullPolicy: Alwayskubectl get pods
