@@ -24,7 +24,7 @@ steps:
     args:
       - 'apply'
       - '-f'
-      - kubernetes.yml'
+      - 'kubernetes.yml'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
       - 'CLOUDSDK_CONTAINER_CLUSTER=istio-cluster'
