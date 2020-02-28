@@ -21,8 +21,8 @@ spec:
       - env:
         - name: JAVA_OPTIONS
           value: -Xms15m -Xmx15m -Xmn15m
-        name: customer
-        image: example/recommendation:v1
+        name: recommendation
+        image: recommendation:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
