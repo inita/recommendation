@@ -22,7 +22,7 @@ spec:
         - name: JAVA_OPTIONS
           value: -Xms15m -Xmx15m -Xmn15m
         name: recommendation
-        image: recommendation:v1
+        image: cr.io/cirrus-initial-project/recommendation:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
