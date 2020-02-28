@@ -39,7 +39,7 @@ spec:
             command:
             - curl
             - localhost:8080/health/live
-          initialDelaySeconds: 20
+          initialDelaySeconds: 60
           periodSeconds: 4
           timeoutSeconds: 1
         readinessProbe:
@@ -47,7 +47,7 @@ spec:
             command:
             - curl
             - localhost:8080/health/ready
-          initialDelaySeconds: 10
+          initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 1
         securityContext:
