@@ -4,9 +4,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Locale;
 
 @RestController
 public class RecommendationController {
@@ -44,7 +47,10 @@ public class RecommendationController {
     public void live() {}
 
     @RequestMapping("/")
-    public ResponseEntity<String> getRecommendations() {
+    public ResponseEntity<String> getRecommendations(@RequestHeader(value = "Accept-Language") String language) {
+        if (Locale.GERMANY.equals(Locale.forLanguageTag(language))) {
+            logger.debug("bingo");
+        }
         count++;
         logger.debug(String.format("recommendation request from %s: %d", HOSTNAME, count));
 
