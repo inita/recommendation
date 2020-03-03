@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,17 +46,21 @@ public class RecommendationController {
     public void live() {}
 
     @RequestMapping("/")
-    public ResponseEntity<String> getRecommendations() {
+    public ResponseEntity<Recommendation> getRecommendations() {
         count++;
         logger.debug(String.format("recommendation request from %s: %d", HOSTNAME, count));
 
-         timeout();
+        timeout();
 
         logger.debug("recommendation service ready to return");
         if (misbehave) {
             return doMisbehavior();
         }
-        return ResponseEntity.ok(String.format(RecommendationController.RESPONSE_STRING_FORMAT, HOSTNAME, count));
+
+        Recommendation r = new Recommendation();
+        r.setComment(String.format(RecommendationController.RESPONSE_STRING_FORMAT, HOSTNAME, count));
+
+        return ResponseEntity.ok(r);
     }
 
     private void timeout() {
@@ -68,10 +71,11 @@ public class RecommendationController {
         }
     }
 
-    private ResponseEntity<String> doMisbehavior() {
+    private ResponseEntity<Recommendation> doMisbehavior() {
         logger.debug(String.format("Misbehaving %d", count));
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-                .body(String.format("recommendation misbehavior from '%s'\n", HOSTNAME));
+        Recommendation r = new Recommendation();
+        r.setComment(String.format("recommendation misbehavior from '%s'\n", HOSTNAME));
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(r);
     }
 
     @RequestMapping("/misbehave")
