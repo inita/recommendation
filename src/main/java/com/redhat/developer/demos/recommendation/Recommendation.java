@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Recommendation {
 
-    private String id;
+    private Integer id;
     private String comment;
     private int count;
 
@@ -16,11 +16,11 @@ public class Recommendation {
         this.comment = comment;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

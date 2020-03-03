@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Locale;
+import java.util.Random;
 
 @RestController
 public class RecommendationController {
 
-    private static final String RESPONSE_STRING_FORMAT = "recommendation v1 from '%s': %d\n";
+    private static final String RESPONSE_STRING_FORMAT = "recommendation v1 from '%s': %d";
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -58,7 +59,11 @@ public class RecommendationController {
         }
 
         Recommendation r = new Recommendation();
+        Random rand = new Random();
+        Integer id = rand.nextInt(1000000);
+        r.setId(id);
         r.setComment(String.format(RecommendationController.RESPONSE_STRING_FORMAT, HOSTNAME, count));
+        r.setCount(count);
 
         return ResponseEntity.ok(r);
     }
