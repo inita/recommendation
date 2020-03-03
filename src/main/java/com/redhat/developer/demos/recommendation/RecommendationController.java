@@ -47,10 +47,7 @@ public class RecommendationController {
     public void live() {}
 
     @RequestMapping("/")
-    public ResponseEntity<String> getRecommendations(@RequestHeader(value = "Accept-Language", required = false) String language) {
-        if (Locale.GERMANY.equals(Locale.forLanguageTag(language))) {
-            logger.debug("bingo");
-        }
+    public ResponseEntity<String> getRecommendations() {
         count++;
         logger.debug(String.format("recommendation request from %s: %d", HOSTNAME, count));
 
