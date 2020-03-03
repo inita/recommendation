@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Recommendation {
 
-    private Integer id;
+    private Long id;
     private String comment;
-    private int count;
+    private Boolean isOk;
 
     public String getComment() {
         return comment;
@@ -16,20 +16,20 @@ public class Recommendation {
         this.comment = comment;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getCount() {
-        return count;
+    public Boolean getOk() {
+        return isOk;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setOk(Boolean ok) {
+        isOk = ok;
     }
 
     @Override

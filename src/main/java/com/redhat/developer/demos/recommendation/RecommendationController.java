@@ -60,10 +60,11 @@ public class RecommendationController {
 
         Recommendation r = new Recommendation();
         Random rand = new Random();
-        Integer id = rand.nextInt(1000000);
+        Long id = rand.nextLong();
         r.setId(id);
         r.setComment(String.format(RecommendationController.RESPONSE_STRING_FORMAT, HOSTNAME, count));
-        r.setCount(count);
+        boolean isOk = id % 2 == 0 ? Boolean.TRUE: Boolean.FALSE;
+        r.setOk(isOk);
 
         return ResponseEntity.ok(r);
     }
