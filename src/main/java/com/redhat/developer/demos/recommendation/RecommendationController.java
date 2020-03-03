@@ -60,7 +60,7 @@ public class RecommendationController {
 
         Recommendation r = new Recommendation();
         Random rand = new Random();
-        Long id = rand.nextLong();
+        Integer id = rand.nextInt(1000000);
         r.setId(id);
         r.setComment(String.format(RecommendationController.RESPONSE_STRING_FORMAT, HOSTNAME, count));
         boolean isOk = id % 2 == 0 ? Boolean.TRUE: Boolean.FALSE;
