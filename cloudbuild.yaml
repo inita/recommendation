@@ -9,7 +9,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/dev1-onb-playground/recommendation:latest'
+      - 'gcr.io/dev1-onb-playground-18fd/recommendation:latest'
       - '.'
 
   # This step pushes the image to Container Registry
@@ -19,22 +19,13 @@ steps:
     id: Push
     args:
       - 'push'
-      - 'gcr.io/dev1-onb-playground/recommendation:latest'
+      - 'gcr.io/dev1-onb-playground-18fd/recommendation:latest'
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Create deployment
     args:
       - 'apply'
       - '-f'
       - 'kubernetes.yml'
-    env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=app'
-  - name: 'gcr.io/cloud-builders/kubectl'
-    id: Create Virtual Service
-    args:
-      - 'apply'
-      - '-f'
-      - 'virtualservice.yml'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
       - 'CLOUDSDK_CONTAINER_CLUSTER=app'
