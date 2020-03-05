@@ -9,8 +9,9 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/cirrus-initial-project/recommendation:latest'
+      - 'gcr.io/dev1-onb-playground/recommendation:latest'
       - '.'
+
   # This step pushes the image to Container Registry
   # The PROJECT_ID and SHORT_SHA variables are automatically
   # replaced by Cloud Build.
@@ -18,16 +19,25 @@ steps:
     id: Push
     args:
       - 'push'
-      - 'gcr.io/cirrus-initial-project/recommendation:latest'
+      - 'gcr.io/dev1-onb-playground/recommendation:latest'
   - name: 'gcr.io/cloud-builders/kubectl'
-    id: Deploy
+    id: Create deployment
     args:
       - 'apply'
       - '-f'
       - 'kubernetes.yml'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=istio-cluster'
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=app'
+  - name: 'gcr.io/cloud-builders/kubectl'
+    id: Create Virtual Service
+    args:
+      - 'apply'
+      - '-f'
+      - 'virtualservice.yml'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=app'
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Fetch changes
     args:
@@ -35,5 +45,5 @@ steps:
       - 'restart'
       - 'deployment/recommendation'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west1-b'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=istio-cluster'
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=app'

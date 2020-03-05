@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: recommendation
-          image: gcr.io/cirrus-initial-project/recommendation:latest
+          image: gcr.io/dev1-onb-playground/recommendation:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
