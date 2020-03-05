@@ -27,7 +27,7 @@ steps:
       - '-f'
       - 'kubernetes.yml'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=app'
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Fetch changes
@@ -36,5 +36,5 @@ steps:
       - 'restart'
       - 'deployment/recommendation'
     env:
-      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4'
+      - 'CLOUDSDK_COMPUTE_ZONE=europe-west4-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=app'
